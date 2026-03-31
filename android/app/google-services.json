@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "375084122580",
+    "project_id": "gymflowlite",
+    "storage_bucket": "gymflowlite.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:375084122580:android:772042c30038a53a6d5641",
+        "android_client_info": {
+          "package_name": "com.example.gymflow_lite"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDEKuGLq4dIxXMQJcubIAvpC8tPKUblSdc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
