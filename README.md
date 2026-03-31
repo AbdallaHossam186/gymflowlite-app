@@ -74,7 +74,7 @@ To maintain a clean and professional workflow, each feature or milestone is deve
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/<your-username>/gymflow-app.git
+git clone https://github.com/AbdallaHossam186/gymflow-app.git
 cd gymflow-app
 
 Install dependencies
