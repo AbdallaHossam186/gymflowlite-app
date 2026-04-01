@@ -5,6 +5,7 @@ class OnboardingModel {
   final String description;
   final String imagePath;
   final bool? twoSectionTitle;
+  final String stepName;
 
   OnboardingModel({
     this.title,
@@ -13,5 +14,6 @@ class OnboardingModel {
     required this.description,
     required this.imagePath,
     this.twoSectionTitle = false,
+    required this.stepName,
   });
 }
