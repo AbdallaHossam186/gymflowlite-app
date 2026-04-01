@@ -1,7 +1,9 @@
 import 'package:get/get.dart';
+import 'package:gymflow_lite/modules/onboarding/views/onboarding_view.dart';
 import 'package:gymflow_lite/modules/splash_screen/binding/splash_binding.dart';
 import 'package:gymflow_lite/modules/splash_screen/views/splash_page.dart';
 
+import '../modules/onboarding/binding/onboarding_binding.dart';
 import 'app_routes.dart';
 
 class AppPages {
@@ -10,6 +12,11 @@ class AppPages {
       name: AppRoutes.splash,
       page: () => SplashPage(),
       binding: SplashBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.onboarding,
+      page: () => const OnboardingView(),
+      binding: OnboardingBinding(),
     ),
     // GetPage(name: AppRoutes.home, page: () => HomeView()),
   ];
