@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:gymflow_lite/modules/onboarding/controllers/onboarding_controller.dart';
+import 'package:gymflow_lite/routes/app_routes.dart';
+import 'package:gymflow_lite/widgets/rounded_button.dart';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Floating bob widget — wraps any child in a looping up/down animation
@@ -617,19 +619,12 @@ class OnboardingView extends GetView<OnboardingController> {
                               ? MediaQuery.of(context).size.width * 0.62
                               : double.infinity,
                           height: 56,
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: theme.primaryColor,
-                              foregroundColor: Colors.white,
-                              elevation: 0,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30),
-                              ),
-                            ),
+                          child: RoundedButton(
                             onPressed: () {
                               if (controller.pageIndex.value < 2) {
                                 controller.pageIndex.value++;
                               } else {
+                                Get.offNamed(AppRoutes.login);
                                 // Handle last page — navigate to home/login
                               }
                             },

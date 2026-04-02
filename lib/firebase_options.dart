@@ -63,6 +63,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '375084122580',
     projectId: 'gymflowlite',
     storageBucket: 'gymflowlite.firebasestorage.app',
+    iosClientId: '375084122580-f4t8mnegvbi5tn7qp8bubpp4cd9k8ro0.apps.googleusercontent.com',
     iosBundleId: 'com.example.gymflowLite',
   );
+
 }
