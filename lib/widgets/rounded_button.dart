@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 
 class RoundedButton extends StatelessWidget {
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
   final Widget child;
   final ButtonStyle? style;
+  final Color? bgColor;
   const RoundedButton({
     super.key,
     required this.onPressed,
     required this.child,
+    this.bgColor,
     this.style,
   });
 
@@ -18,8 +20,11 @@ class RoundedButton extends StatelessWidget {
       style:
           style ??
           ElevatedButton.styleFrom(
-            backgroundColor: theme.primaryColor,
+            backgroundColor: bgColor ?? theme.primaryColor,
             foregroundColor: Colors.white,
+            disabledBackgroundColor:
+                (bgColor ?? theme.primaryColor).withValues(alpha: 0.6),
+            disabledForegroundColor: Colors.white70,
             elevation: 0,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(30),

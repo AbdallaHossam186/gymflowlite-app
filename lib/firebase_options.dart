@@ -51,7 +51,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyDEKuGLq4dIxXMQJcubIAvpC8tPKUblSdc',
-    appId: '1:375084122580:android:772042c30038a53a6d5641',
+    appId: '1:375084122580:android:32b91c8b317f2ac96d5641',
     messagingSenderId: '375084122580',
     projectId: 'gymflowlite',
     storageBucket: 'gymflowlite.firebasestorage.app',
@@ -59,12 +59,12 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyCnPLE1TNf_i8N1y4I_AbNLpVx9xzqpdx0',
-    appId: '1:375084122580:ios:0b5b81af8f13aca36d5641',
+    appId: '1:375084122580:ios:271e09c5bb680c2b6d5641',
     messagingSenderId: '375084122580',
     projectId: 'gymflowlite',
     storageBucket: 'gymflowlite.firebasestorage.app',
-    iosClientId: '375084122580-f4t8mnegvbi5tn7qp8bubpp4cd9k8ro0.apps.googleusercontent.com',
-    iosBundleId: 'com.example.gymflowLite',
+    iosClientId: '375084122580-tmpmn7gq2mhpmag3mh48h06lifeph9oi.apps.googleusercontent.com',
+    iosBundleId: 'com.gymflow.Lite',
   );
 
 }

@@ -10,6 +10,8 @@ class LabeledTextField extends StatelessWidget {
   final bool isPassword;
   final RxBool? obscureText;
   final VoidCallback? onForgotPassword;
+  final bool? needForgotPassword;
+  final String? Function(String?)? validator;
 
   const LabeledTextField({
     super.key,
@@ -21,16 +23,22 @@ class LabeledTextField extends StatelessWidget {
     this.isPassword = false,
     this.obscureText,
     this.onForgotPassword,
+    this.needForgotPassword = true,
+    this.validator,
   });
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     Widget buildTextField() {
-      return TextField(
+      return TextFormField(
         controller: controller,
         keyboardType: keyboardType,
         obscureText: isPassword ? obscureText!.value : false,
+        validator: validator,
+        autovalidateMode: validator != null
+            ? AutovalidateMode.onUserInteraction
+            : AutovalidateMode.disabled,
         style: const TextStyle(fontSize: 15, color: Colors.black87),
         decoration: InputDecoration(
           hintText: hint,
@@ -57,16 +65,24 @@ class LabeledTextField extends StatelessWidget {
             vertical: 18,
           ),
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(14),
+            borderRadius: BorderRadius.circular(16),
             borderSide: BorderSide.none,
           ),
           enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(14),
+            borderRadius: BorderRadius.circular(16),
             borderSide: BorderSide.none,
           ),
           focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(14),
+            borderRadius: BorderRadius.circular(16),
             borderSide: const BorderSide(color: Color(0xFF5B5BD6), width: 1.5),
+          ),
+          errorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(16),
+            borderSide: BorderSide(color: Colors.red.shade300, width: 1.5),
+          ),
+          focusedErrorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(16),
+            borderSide: BorderSide(color: Colors.red.shade400, width: 1.5),
           ),
         ),
       );
@@ -85,7 +101,7 @@ class LabeledTextField extends StatelessWidget {
                 color: Colors.black87,
               ),
             ),
-            isPassword
+            isPassword && (needForgotPassword == true)
                 ? GestureDetector(
                     onTap: onForgotPassword,
                     child: Text(

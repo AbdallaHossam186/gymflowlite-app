@@ -4,6 +4,7 @@ import 'package:gymflow_lite/modules/auth/bindings/register_binding.dart';
 import 'package:gymflow_lite/modules/auth/views/forget_password_view.dart';
 import 'package:gymflow_lite/modules/auth/views/login_view.dart';
 import 'package:gymflow_lite/modules/auth/views/register_view.dart';
+import 'package:gymflow_lite/modules/home/home_view.dart';
 import 'package:gymflow_lite/modules/onboarding/views/onboarding_view.dart';
 import 'package:gymflow_lite/modules/splash_screen/binding/splash_binding.dart';
 import 'package:gymflow_lite/modules/splash_screen/views/splash_page.dart';
@@ -31,12 +32,17 @@ class AppPages {
     GetPage(
       name: AppRoutes.forgotPassword,
       page: () => const ForgetPasswordView(),
+      binding: LoginBinding(),
     ),
     GetPage(
       name: AppRoutes.register,
       page: () => const RegisterView(),
       binding: RegisterBinding(),
     ),
-    // GetPage(name: AppRoutes.home, page: () => HomeView()),
+    GetPage(
+      name: AppRoutes.home,
+      page: () => const HomeView(),
+      binding: HomeBinding(),
+    ),
   ];
 }

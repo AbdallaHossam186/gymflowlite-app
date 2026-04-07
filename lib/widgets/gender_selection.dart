@@ -46,7 +46,7 @@ class _GenderSelectionState extends State<GenderSelection> {
           padding: const EdgeInsets.all(4),
           decoration: BoxDecoration(
             color: Colors.grey[100],
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.circular(16),
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,

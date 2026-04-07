@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class UserModel {
   final String id;
   final String name;
@@ -52,35 +54,49 @@ class UserModel {
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
-      id: json['id'],
-      name: json['name'],
-      email: json['email'],
-      phone: json['phone'],
-      photoUrl: json['photoUrl'],
+      id: json['id'] as String? ?? '',
+      name: json['name'] as String? ?? '',
+      email: json['email'] as String? ?? '',
+      phone: json['phone'] as String?,
+      photoUrl: json['photoUrl'] as String?,
 
-      gender: json['gender'],
-      gymName: json['gymName'],
-      fitnessLevel: json['fitnessLevel'],
-      workoutTypes: List<String>.from(json['workoutTypes'] ?? []),
+      gender: json['gender'] as String?,
+      gymName: json['gymName'] as String?,
+      fitnessLevel: json['fitnessLevel'] as String?,
+      workoutTypes: (json['workoutTypes'] as List<dynamic>?)
+          ?.map((e) => e.toString())
+          .toList(),
 
-      preferredDays: List<String>.from(json['preferredDays'] ?? []),
-      preferredTimes: List<String>.from(json['preferredTimes'] ?? []),
+      preferredDays: (json['preferredDays'] as List<dynamic>?)
+          ?.map((e) => e.toString())
+          .toList(),
+      preferredTimes: (json['preferredTimes'] as List<dynamic>?)
+          ?.map((e) => e.toString())
+          .toList(),
 
-      latitude: json['latitude'],
-      longitude: json['longitude'],
-      maxDistanceKm: json['maxDistanceKm'],
-      isLookingForPartner: json['isLookingForPartner'] ?? false,
+      latitude: (json['latitude'] as num?)?.toDouble(),
+      longitude: (json['longitude'] as num?)?.toDouble(),
+      maxDistanceKm: (json['maxDistanceKm'] as num?)?.toDouble(),
+      isLookingForPartner: json['isLookingForPartner'] as bool? ?? false,
 
-      friends: List<String>.from(json['friends'] ?? []),
-      bio: json['bio'],
+      friends: (json['friends'] as List<dynamic>?)
+          ?.map((e) => e.toString())
+          .toList(),
+      bio: json['bio'] as String?,
 
-      createdAt: DateTime.parse(json['createdAt']),
-      lastActive: json['lastActive'] != null
-          ? DateTime.parse(json['lastActive'])
-          : null,
-      fcmToken: json['fcmToken'],
-      isPremiumUser: json['isPremiumUser'] ?? false,
+      createdAt: _parseDateTime(json['createdAt']) ?? DateTime.now(),
+      lastActive: _parseDateTime(json['lastActive']),
+      fcmToken: json['fcmToken'] as String?,
+      isPremiumUser: json['isPremiumUser'] as bool? ?? false,
     );
+  }
+
+  /// Handles both ISO 8601 strings and Firestore Timestamps.
+  static DateTime? _parseDateTime(dynamic value) {
+    if (value == null) return null;
+    if (value is Timestamp) return value.toDate();
+    if (value is String) return DateTime.tryParse(value);
+    return null;
   }
 
   Map<String, dynamic> toJson() {
@@ -107,10 +123,58 @@ class UserModel {
       'friends': friends,
       'bio': bio,
 
-      'createdAt': createdAt.toIso8601String(),
-      'lastActive': lastActive?.toIso8601String(),
+      'createdAt': Timestamp.fromDate(createdAt),
+      'lastActive': lastActive != null ? Timestamp.fromDate(lastActive!) : null,
       'fcmToken': fcmToken,
       'isPremiumUser': isPremiumUser,
     };
+  }
+
+  UserModel copyWith({
+    String? id,
+    String? name,
+    String? email,
+    String? phone,
+    String? photoUrl,
+    String? gender,
+    String? gymName,
+    String? fitnessLevel,
+    List<String>? workoutTypes,
+    List<String>? preferredDays,
+    List<String>? preferredTimes,
+    double? latitude,
+    double? longitude,
+    double? maxDistanceKm,
+    bool? isLookingForPartner,
+    List<String>? friends,
+    String? bio,
+    DateTime? createdAt,
+    DateTime? lastActive,
+    String? fcmToken,
+    bool? isPremiumUser,
+  }) {
+    return UserModel(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      email: email ?? this.email,
+      phone: phone ?? this.phone,
+      photoUrl: photoUrl ?? this.photoUrl,
+      gender: gender ?? this.gender,
+      gymName: gymName ?? this.gymName,
+      fitnessLevel: fitnessLevel ?? this.fitnessLevel,
+      workoutTypes: workoutTypes ?? this.workoutTypes,
+      preferredDays: preferredDays ?? this.preferredDays,
+      preferredTimes: preferredTimes ?? this.preferredTimes,
+      latitude: latitude ?? this.latitude,
+      longitude: longitude ?? this.longitude,
+      maxDistanceKm: maxDistanceKm ?? this.maxDistanceKm,
+      isLookingForPartner: isLookingForPartner ?? this.isLookingForPartner,
+      friends: friends ?? this.friends,
+      bio: bio ?? this.bio,
+      createdAt: createdAt ?? this.createdAt,
+      lastActive: lastActive ?? this.lastActive,
+      fcmToken: fcmToken ?? this.fcmToken,
+      isPremiumUser: isPremiumUser ?? this.isPremiumUser,
+    );
   }
 }

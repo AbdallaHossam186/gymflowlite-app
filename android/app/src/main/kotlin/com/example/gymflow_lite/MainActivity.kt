@@ -1,4 +1,4 @@
-package com.example.gymflow_lite
+package com.gymflow.lite
 
 import io.flutter.embedding.android.FlutterActivity
 
