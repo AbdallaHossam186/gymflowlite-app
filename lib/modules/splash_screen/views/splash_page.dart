@@ -86,7 +86,7 @@ class SplashPage extends GetView<SplashController> {
               padding: const EdgeInsets.symmetric(horizontal: 128),
               child: LinearProgressIndicator(
                 borderRadius: BorderRadius.circular(8),
-                backgroundColor: Colors.white.withOpacity(0.1),
+                backgroundColor: Colors.white.withValues(alpha: 0.1),
                 valueColor: AlwaysStoppedAnimation<Color>(
                   Theme.of(context).colorScheme.secondary,
                 ),

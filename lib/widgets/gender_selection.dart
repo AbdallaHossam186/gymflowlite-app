@@ -23,8 +23,6 @@ class _GenderSelectionState extends State<GenderSelection> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

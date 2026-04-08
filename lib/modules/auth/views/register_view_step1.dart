@@ -30,207 +30,264 @@ class RegisterViewStep1 extends GetView<RegisterController> {
               constraints: const BoxConstraints(maxWidth: 640),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // ── Avatar ──────────────────────────────────────────────
-                Center(
-                  child: Column(
-                    children: [
-                      Obx(
-                        () => Stack(
-                          clipBehavior: Clip.none,
-                          children: [
-                            InkWell(
-                              onTap: controller.selectedImage.value == null
-                                  ? () {
-                                      Get.bottomSheet(
-                                        UploadImageBottomsheet(
-                                          controller: controller,
-                                        ),
-                                      );
-                                    }
-                                  : null,
-                              child: Container(
-                                width: 112,
-                                height: 112,
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: const Color(0xFFE1E2E6),
-                                  border: Border.all(
-                                    color: Colors.white,
-                                    width: 4,
-                                  ),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.black.withValues(
-                                        alpha: 0.12,
-                                      ),
-                                      blurRadius: 24,
-                                      offset: const Offset(0, 8),
-                                    ),
-                                  ],
-                                ),
-                                child: controller.selectedImage.value == null
-                                    ? const Icon(
-                                        Icons.add_a_photo_rounded,
-                                        color: Color(0xFF777587),
-                                        size: 36,
-                                      )
-                                    : ClipRRect(
-                                        borderRadius: BorderRadius.circular(56),
-                                        child: Image.file(
-                                          controller.selectedImage.value!,
-                                          fit: BoxFit.cover,
-                                        ),
-                                      ),
-                              ),
-                            ),
-                            Positioned(
-                              bottom: 0,
-                              right: 0,
-                              child: controller.selectedImage.value == null
-                                  ? SizedBox.shrink()
-                                  : InkWell(
-                                      onTap: () {
+                children: [
+                  // ── Avatar ──────────────────────────────────────────────
+                  Center(
+                    child: Column(
+                      children: [
+                        Obx(
+                          () => Stack(
+                            clipBehavior: Clip.none,
+                            children: [
+                              InkWell(
+                                onTap: controller.selectedImage.value == null
+                                    ? () {
                                         Get.bottomSheet(
                                           UploadImageBottomsheet(
                                             controller: controller,
                                           ),
                                         );
-                                      },
-                                      child: Container(
-                                        padding: const EdgeInsets.all(8),
-                                        decoration: BoxDecoration(
-                                          color: theme.primaryColor,
-                                          shape: BoxShape.circle,
-                                          boxShadow: [
-                                            BoxShadow(
-                                              color: Color(0x40675DF9),
-                                              blurRadius: 8,
-                                              offset: Offset(0, 3),
-                                            ),
-                                          ],
+                                      }
+                                    : null,
+                                child: Container(
+                                  width: 112,
+                                  height: 112,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: const Color(0xFFE1E2E6),
+                                    border: Border.all(
+                                      color: Colors.white,
+                                      width: 4,
+                                    ),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.black.withValues(
+                                          alpha: 0.12,
                                         ),
-                                        child: const Icon(
-                                          Icons.edit_rounded,
-                                          color: Colors.white,
-                                          size: 16,
+                                        blurRadius: 24,
+                                        offset: const Offset(0, 8),
+                                      ),
+                                    ],
+                                  ),
+                                  child: controller.selectedImage.value == null
+                                      ? const Icon(
+                                          Icons.add_a_photo_rounded,
+                                          color: Color(0xFF777587),
+                                          size: 36,
+                                        )
+                                      : ClipRRect(
+                                          borderRadius: BorderRadius.circular(
+                                            56,
+                                          ),
+                                          child: Image.file(
+                                            controller.selectedImage.value!,
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                ),
+                              ),
+                              Positioned(
+                                bottom: 0,
+                                right: 0,
+                                child: controller.selectedImage.value == null
+                                    ? SizedBox.shrink()
+                                    : InkWell(
+                                        onTap: () {
+                                          Get.bottomSheet(
+                                            UploadImageBottomsheet(
+                                              controller: controller,
+                                            ),
+                                          );
+                                        },
+                                        child: Container(
+                                          padding: const EdgeInsets.all(8),
+                                          decoration: BoxDecoration(
+                                            color: theme.primaryColor,
+                                            shape: BoxShape.circle,
+                                            boxShadow: [
+                                              BoxShadow(
+                                                color: Color(0x40675DF9),
+                                                blurRadius: 8,
+                                                offset: Offset(0, 3),
+                                              ),
+                                            ],
+                                          ),
+                                          child: const Icon(
+                                            Icons.edit_rounded,
+                                            color: Colors.white,
+                                            size: 16,
+                                          ),
                                         ),
                                       ),
-                                    ),
-                            ),
-                          ],
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 16),
+                        const SizedBox(height: 16),
+                        const Text(
+                          'Upload your best self',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.black87,
+                            letterSpacing: -0.2,
+                          ),
+                        ),
+                        const SizedBox(height: 4),
+                        Text(
+                          'Members with photos get 3x more cheers',
+                          style: TextStyle(
+                            fontSize: 13,
+                            color: theme.colorScheme.onSurfaceVariant,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  const SizedBox(height: 40),
+
+                  // ── Full Name ────────────────────────────────────────────
+                  // _SectionLabel(text: ),
+                  const SizedBox(height: 8),
+                  LabeledTextField(
+                    prefixIcon: Icons.person_outline_rounded,
+                    controller: controller.nameController,
+                    label: 'Your Full Name',
+                    hint: 'Alex Rivera',
+                    validator: Validators.validateName,
+                  ),
+
+                  const SizedBox(height: 28),
+                  LabeledTextField(
+                    prefixIcon: Icons.email_outlined,
+                    controller: controller.emailController,
+                    label: 'Email Address',
+                    hint: 'name@example.com',
+                    validator: Validators.validateEmail,
+                  ),
+
+                  const SizedBox(height: 28),
+
+                  // ── Gender ───────────────────────────────────────────────
+                  GenderSelection(),
+
+                  const SizedBox(height: 28),
+
+                  // ── Gym Selection ────────────────────────────────────────
+                  Text(
+                    'Primary Gym Hub',
+                    style: theme.textTheme.bodyMedium!.copyWith(
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black87,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  GestureDetector(
+                    onTap: () {
+                      Get.bottomSheet(
+                        backgroundColor: theme.scaffoldBackgroundColor,
+                        ignoreSafeArea: false,
+                        GymSelectionBottomsheet(controller: controller),
+                        isScrollControlled: true,
+                      );
+                    },
+                    child: _GymSelector(),
+                  ),
+
+                  const SizedBox(height: 28),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
                       const Text(
-                        'Upload your best self',
+                        'Fitness Level',
                         style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w700,
+                          fontSize: 15,
+                          fontWeight: FontWeight.w600,
                           color: Colors.black87,
-                          letterSpacing: -0.2,
                         ),
                       ),
-                      const SizedBox(height: 4),
-                      Text(
-                        'Members with photos get 3x more cheers',
-                        style: TextStyle(
-                          fontSize: 13,
-                          color: theme.colorScheme.onSurfaceVariant,
+                      const SizedBox(height: 10),
+                      Obx(
+                        () => DropdownButtonFormField<String>(
+                          initialValue:
+                              controller.selectedFitnessLevel.value.isEmpty
+                              ? null
+                              : controller.selectedFitnessLevel.value,
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Colors.grey.shade100,
+                            contentPadding: const EdgeInsets.symmetric(
+                              horizontal: 16,
+                              vertical: 18,
+                            ),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(16),
+                              borderSide: BorderSide.none,
+                            ),
+                          ),
+                          hint: const Text('Select your fitness level'),
+                          items:
+                              [
+                                    'Beginner',
+                                    'Intermediate',
+                                    'Advanced',
+                                    'Professional',
+                                  ]
+                                  .map(
+                                    (e) => DropdownMenuItem(
+                                      value: e,
+                                      child: Text(e),
+                                    ),
+                                  )
+                                  .toList(),
+                          onChanged: (val) {
+                            if (val != null) {
+                              controller.selectedFitnessLevel.value = val;
+                            }
+                          },
                         ),
                       ),
                     ],
                   ),
-                ),
+                  const SizedBox(height: 10),
 
-                const SizedBox(height: 40),
-
-                // ── Full Name ────────────────────────────────────────────
-                // _SectionLabel(text: ),
-                const SizedBox(height: 8),
-                LabeledTextField(
-                  prefixIcon: Icons.person_outline_rounded,
-                  controller: controller.nameController,
-                  label: 'Your Full Name',
-                  hint: 'Alex Rivera',
-                  validator: Validators.validateName,
-                ),
-
-                const SizedBox(height: 28),
-                LabeledTextField(
-                  prefixIcon: Icons.email_outlined,
-                  controller: controller.emailController,
-                  label: 'Email Address',
-                  hint: 'name@example.com',
-                  validator: Validators.validateEmail,
-                ),
-
-                const SizedBox(height: 28),
-
-                // ── Gender ───────────────────────────────────────────────
-                GenderSelection(),
-
-                const SizedBox(height: 28),
-
-                // ── Gym Selection ────────────────────────────────────────
-                Text(
-                  'Primary Gym Hub',
-                  style: theme.textTheme.bodyMedium!.copyWith(
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black87,
+                  // ── Training Discipline ──────────────────────────────────
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Text(
+                        'Training Discipline',
+                        style: theme.textTheme.bodyMedium!.copyWith(
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black87,
+                        ),
+                      ),
+                      Text(
+                        'PICK AT LEAST 2',
+                        style: TextStyle(
+                          fontSize: 10,
+                          fontWeight: FontWeight.w600,
+                          color: theme.colorScheme.onSurfaceVariant,
+                          letterSpacing: 1.2,
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-                const SizedBox(height: 8),
-                GestureDetector(
-                  onTap: () {
-                    Get.bottomSheet(
-                      backgroundColor: theme.scaffoldBackgroundColor,
-                      ignoreSafeArea: false,
-                      GymSelectionBottomsheet(),
-                      isScrollControlled: true,
-                    );
-                  },
-                  child: _GymSelector(),
-                ),
+                  const SizedBox(height: 12),
+                  TrainingDisciplineGrid(
+                    disciplines: controller.disciplines,
+                    onToggle: controller.toggle,
+                  ),
 
-                const SizedBox(height: 28),
+                  const SizedBox(height: 32),
 
-                // ── Training Discipline ──────────────────────────────────
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Text(
-                      'Training Discipline',
-                      style: theme.textTheme.bodyMedium!.copyWith(
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black87,
-                      ),
-                    ),
-                    Text(
-                      'PICK AT LEAST 2',
-                      style: TextStyle(
-                        fontSize: 10,
-                        fontWeight: FontWeight.w600,
-                        color: theme.colorScheme.onSurfaceVariant,
-                        letterSpacing: 1.2,
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 12),
-                TrainingDisciplineGrid(
-                  disciplines: controller.disciplines,
-                  onToggle: controller.toggle,
-                ),
-
-                const SizedBox(height: 32),
-
-                // ── Privacy hint ─────────────────────────────────────────
-                _PrivacyHint(),
-              ],
+                  // ── Privacy hint ─────────────────────────────────────────
+                  _PrivacyHint(),
+                ],
+              ),
             ),
-          ),
           ),
         ),
       ),
@@ -283,8 +340,9 @@ class _GymSelector extends GetView<RegisterController> {
                     style: TextStyle(
                       color: hasSelection ? Colors.black87 : _outline,
                       fontSize: 14,
-                      fontWeight:
-                          hasSelection ? FontWeight.w600 : FontWeight.normal,
+                      fontWeight: hasSelection
+                          ? FontWeight.w600
+                          : FontWeight.normal,
                     ),
                   ),
                 ),
@@ -300,54 +358,6 @@ class _GymSelector extends GetView<RegisterController> {
     });
   }
 }
-
-class _GymChip extends StatelessWidget {
-  final String label;
-  final bool isRecent;
-
-  const _GymChip({required this.label, required this.isRecent});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-      decoration: BoxDecoration(
-        color: isRecent
-            ? const Color(0xFFEEF2FF) // indigo-50
-            : const Color(0xFFE7E8EC), // surface-container-high
-        borderRadius: BorderRadius.circular(999),
-        border: isRecent
-            ? Border.all(color: const Color(0xFFE0E7FF), width: 1)
-            : null,
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          if (isRecent) ...[
-            const Icon(
-              Icons.history_rounded,
-              size: 14,
-              color: Color(0xFF4D41DF),
-            ),
-            const SizedBox(width: 4),
-          ],
-          Text(
-            label,
-            style: TextStyle(
-              fontSize: 11,
-              fontWeight: FontWeight.w600,
-              color: isRecent
-                  ? const Color(0xFF4D41DF)
-                  : const Color(0xFF464555),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-// ── Privacy Hint ─────────────────────────────────────────────────────────────
 
 class _PrivacyHint extends StatelessWidget {
   @override

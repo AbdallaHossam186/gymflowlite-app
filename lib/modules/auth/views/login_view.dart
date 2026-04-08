@@ -70,11 +70,14 @@ class LoginView extends GetView<LoginController> {
                     child: OutlinedButton(
                       onPressed: controller.isGoogleLoading.value
                           ? null
-                          : () => controller.loginWithGoogle(),
+                          : () => Get.toNamed(AppRoutes.compeleteYourProfile),
+                      // : () => controller.loginWithGoogle(),
                       style: OutlinedButton.styleFrom(
                         backgroundColor: Colors.white,
-                        side:
-                            BorderSide(color: Colors.grey.shade200, width: 1.5),
+                        side: BorderSide(
+                          color: Colors.grey.shade200,
+                          width: 1.5,
+                        ),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(16),
                         ),
@@ -84,7 +87,9 @@ class LoginView extends GetView<LoginController> {
                           ? const SizedBox(
                               width: 24,
                               height: 24,
-                              child: CircularProgressIndicator(strokeWidth: 2.5),
+                              child: CircularProgressIndicator(
+                                strokeWidth: 2.5,
+                              ),
                             )
                           : Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -122,8 +127,7 @@ class LoginView extends GetView<LoginController> {
                 Row(
                   children: [
                     Expanded(
-                      child:
-                          Divider(color: Colors.grey.shade300, thickness: 1),
+                      child: Divider(color: Colors.grey.shade300, thickness: 1),
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -138,8 +142,7 @@ class LoginView extends GetView<LoginController> {
                       ),
                     ),
                     Expanded(
-                      child:
-                          Divider(color: Colors.grey.shade300, thickness: 1),
+                      child: Divider(color: Colors.grey.shade300, thickness: 1),
                     ),
                   ],
                 ),
@@ -192,8 +195,9 @@ class LoginView extends GetView<LoginController> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(16),
                         ),
-                        disabledBackgroundColor:
-                            const Color(0xFF5B5BD6).withValues(alpha: 0.6),
+                        disabledBackgroundColor: const Color(
+                          0xFF5B5BD6,
+                        ).withValues(alpha: 0.6),
                         disabledForegroundColor: Colors.white70,
                       ),
                       child: controller.isLoading.value
@@ -202,8 +206,9 @@ class LoginView extends GetView<LoginController> {
                               height: 24,
                               child: CircularProgressIndicator(
                                 strokeWidth: 2.5,
-                                valueColor:
-                                    AlwaysStoppedAnimation<Color>(Colors.white),
+                                valueColor: AlwaysStoppedAnimation<Color>(
+                                  Colors.white,
+                                ),
                               ),
                             )
                           : const Text(

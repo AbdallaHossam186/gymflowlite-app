@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:gymflow_lite/modules/auth/compnents/gym_chip.dart';
-import 'package:gymflow_lite/modules/auth/controllers/register_controller.dart';
+
 import 'package:gymflow_lite/widgets/rounded_button.dart';
 
 class GymSelectionBottomsheet extends StatefulWidget {
-  const GymSelectionBottomsheet({super.key});
+  const GymSelectionBottomsheet({super.key, required this.controller});
+
+  final dynamic controller;
 
   @override
   State<GymSelectionBottomsheet> createState() =>
@@ -39,8 +41,7 @@ class _GymSelectionBottomsheetState extends State<GymSelectionBottomsheet> {
     if (_searchQuery.isEmpty) return _gyms;
     return _gyms
         .where(
-          (g) =>
-              g['name']!.toLowerCase().contains(_searchQuery.toLowerCase()),
+          (g) => g['name']!.toLowerCase().contains(_searchQuery.toLowerCase()),
         )
         .toList();
   }
@@ -62,8 +63,8 @@ class _GymSelectionBottomsheetState extends State<GymSelectionBottomsheet> {
                     final selectedGym =
                         _filteredGyms[_selectedIndex]['name'] ?? '';
                     // Update the controller
-                    final controller = Get.find<RegisterController>();
-                    controller.selectedGym.value = selectedGym;
+
+                    widget.controller.selectedGym.value = selectedGym;
                     Get.back();
                   }
                 : null,
@@ -71,9 +72,7 @@ class _GymSelectionBottomsheetState extends State<GymSelectionBottomsheet> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  _selectedIndex >= 0
-                      ? 'Confirm Selection'
-                      : 'Select a Gym',
+                  _selectedIndex >= 0 ? 'Confirm Selection' : 'Select a Gym',
                   style: const TextStyle(
                     color: Colors.white,
                     fontSize: 16,
@@ -112,8 +111,7 @@ class _GymSelectionBottomsheetState extends State<GymSelectionBottomsheet> {
           children: [
             // ── Search bar ────────────────────────────────────────────────
             Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 decoration: BoxDecoration(

@@ -1,15 +1,18 @@
 import 'package:get/get.dart';
 import 'package:gymflow_lite/modules/auth/bindings/login_binding.dart';
 import 'package:gymflow_lite/modules/auth/bindings/register_binding.dart';
+import 'package:gymflow_lite/modules/auth/views/complete_your_profile_view.dart';
 import 'package:gymflow_lite/modules/auth/views/forget_password_view.dart';
 import 'package:gymflow_lite/modules/auth/views/login_view.dart';
 import 'package:gymflow_lite/modules/auth/views/register_view.dart';
-import 'package:gymflow_lite/modules/home/home_view.dart';
+import 'package:gymflow_lite/modules/home/bindings/home_binding.dart';
+import 'package:gymflow_lite/modules/home/views/home_view.dart';
 import 'package:gymflow_lite/modules/onboarding/views/onboarding_view.dart';
 import 'package:gymflow_lite/modules/splash_screen/binding/splash_binding.dart';
 import 'package:gymflow_lite/modules/splash_screen/views/splash_page.dart';
 
 import '../modules/onboarding/binding/onboarding_binding.dart';
+import 'package:gymflow_lite/modules/auth/bindings/complete_profile_binding.dart';
 import 'app_routes.dart';
 
 class AppPages {
@@ -43,6 +46,11 @@ class AppPages {
       name: AppRoutes.home,
       page: () => const HomeView(),
       binding: HomeBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.compeleteYourProfile,
+      page: () => const CompleteYourProfileView(),
+      binding: CompleteProfileBinding(),
     ),
   ];
 }

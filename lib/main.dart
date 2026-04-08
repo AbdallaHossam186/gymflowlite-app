@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:gymflow_lite/core/theme/app_theme.dart';
 import 'package:gymflow_lite/firebase_options.dart';
+import 'package:gymflow_lite/modules/auth/bindings/auth_binding.dart';
 
 import 'package:gymflow_lite/routes/app_pages.dart';
 import 'package:gymflow_lite/routes/app_routes.dart';
@@ -34,6 +35,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      initialBinding: AuthBinding(),
       initialRoute: AppRoutes.splash,
       getPages: AppPages.pages,
       debugShowCheckedModeBanner: false,

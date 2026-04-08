@@ -47,13 +47,12 @@ class AuthService {
 
       // authenticate() shows the interactive sign-in UI.
       // Throws GoogleSignInException if cancelled or failed.
-      final GoogleSignInAccount googleUser =
-          await GoogleSignIn.instance.authenticate();
+      final GoogleSignInAccount googleUser = await GoogleSignIn.instance
+          .authenticate();
 
       // In v7.x, authentication only returns idToken.
       // accessToken is obtained via authorizationClient if needed.
-      final GoogleSignInAuthentication googleAuth =
-          googleUser.authentication;
+      final GoogleSignInAuthentication googleAuth = googleUser.authentication;
 
       final credential = GoogleAuthProvider.credential(
         idToken: googleAuth.idToken,

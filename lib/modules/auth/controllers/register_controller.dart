@@ -34,7 +34,7 @@ class RegisterController extends GetxController {
   // ── Personal info ───────────────────────────────────────────────────────
   final RxString selectedGender = ''.obs;
   final RxString selectedGym = ''.obs;
-
+  final RxString selectedFitnessLevel = ''.obs;
   // ── Form keys ───────────────────────────────────────────────────────────
   final formKeyStep1 = GlobalKey<FormState>();
   final formKeyStep2 = GlobalKey<FormState>();
@@ -108,7 +108,7 @@ class RegisterController extends GetxController {
         profileImage: selectedImage.value,
       );
 
-      Get.offAllNamed(AppRoutes.home);
+      // Get.offAllNamed(AppRoutes.home);
     } catch (e) {
       _showError(_cleanErrorMessage(e));
     } finally {

@@ -94,7 +94,7 @@ class _FloatingCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.10),
+            color: Colors.black.withValues(alpha: 0.10),
             blurRadius: 20,
             offset: const Offset(0, 8),
           ),
@@ -156,10 +156,10 @@ class _GlassPill extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
           decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.75),
+            color: Colors.white.withValues(alpha: 0.75),
             borderRadius: BorderRadius.circular(30),
             border: Border.all(
-              color: Colors.white.withOpacity(0.4),
+              color: Colors.white.withValues(alpha: 0.4),
               width: 1.5,
             ),
           ),
@@ -247,7 +247,7 @@ class OnboardingView extends GetView<OnboardingController> {
                 ),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.1),
+                    color: Colors.black.withValues(alpha: 0.1),
                     blurRadius: 20,
                     offset: const Offset(0, 10),
                   ),
@@ -374,7 +374,7 @@ class OnboardingView extends GetView<OnboardingController> {
                         ),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.black.withOpacity(0.15),
+                            color: Colors.black.withValues(alpha: 0.15),
                             blurRadius: 24,
                             offset: const Offset(0, 12),
                           ),
@@ -553,7 +553,9 @@ class OnboardingView extends GetView<OnboardingController> {
                                 borderRadius: BorderRadius.circular(20),
                                 boxShadow: [
                                   BoxShadow(
-                                    color: theme.primaryColor.withOpacity(0.3),
+                                    color: theme.primaryColor.withValues(
+                                      alpha: 0.3,
+                                    ),
                                     blurRadius: 15,
                                     offset: const Offset(0, 5),
                                   ),

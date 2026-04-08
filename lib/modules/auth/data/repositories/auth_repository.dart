@@ -80,13 +80,15 @@ class AuthRepository {
     );
 
     await _firestoreService.createUserProfile(user);
-    debugPrint('[AuthRepo] Firestore profile created. photoUrl in doc: $photoUrl');
+    debugPrint(
+      '[AuthRepo] Firestore profile created. photoUrl in doc: $photoUrl',
+    );
     return user;
   }
 
   // ── Login with Google ───────────────────────────────────────────────────
 
-  Future<UserModel> loginWithGoogle() async {
+  Future<UserModel?> loginWithGoogle() async {
     final credential = await _authService.loginWithGoogle();
     final firebaseUser = credential.user!;
     final uid = firebaseUser.uid;
@@ -113,8 +115,7 @@ class AuthRepository {
 
   // ── Password Reset ──────────────────────────────────────────────────────
 
-  Future<void> resetPassword(String email) =>
-      _authService.resetPassword(email);
+  Future<void> resetPassword(String email) => _authService.resetPassword(email);
 
   // ── Sign Out ────────────────────────────────────────────────────────────
 

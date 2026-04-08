@@ -14,9 +14,9 @@ class SplashController extends GetxController {
   @override
   void onReady() {
     super.onReady();
-    Future.delayed(const Duration(seconds: 3), () {
-      Get.offAllNamed(AppRoutes.onboarding);
-    });
+    // Future.delayed(const Duration(seconds: 3), () {
+    //   Get.offAllNamed(AppRoutes.onboarding);
+    // });
   }
 
   Future<void> _initPackageInfo() async {
