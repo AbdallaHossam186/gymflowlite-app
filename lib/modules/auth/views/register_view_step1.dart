@@ -185,7 +185,11 @@ class RegisterViewStep1 extends GetView<RegisterController> {
                   const SizedBox(height: 24),
 
                   // ── Gender ───────────────────────────────────────────────
-                  GenderSelection(),
+                  GenderSelection(
+                    initialValue: controller.selectedGender.value,
+                    onChanged: (value) =>
+                        controller.selectedGender.value = value,
+                  ),
 
                   const SizedBox(height: 28),
 
@@ -358,8 +362,9 @@ class RegisterViewStep1 extends GetView<RegisterController> {
                       spacing: 8,
                       runSpacing: 8,
                       children: times.map((time) {
-                        final selected =
-                            controller.preferredTimes.contains(time);
+                        final selected = controller.preferredTimes.contains(
+                          time,
+                        );
                         return ChoiceChip(
                           label: Text(time),
                           selected: selected,

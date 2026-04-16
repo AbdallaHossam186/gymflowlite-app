@@ -19,7 +19,7 @@ class CompleteProfileController extends GetxController {
   final phoneController = TextEditingController();
   final bioController = TextEditingController();
 
-  final RxString selectedGender = ''.obs;
+  final RxString selectedGender = 'Male'.obs;
   final RxString selectedGym = ''.obs;
   final RxString selectedFitnessLevel = ''.obs;
   final RxBool isLookingForPartner = false.obs;

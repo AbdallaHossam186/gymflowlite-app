@@ -26,7 +26,7 @@ class RegisterController extends GetxController {
   final RxBool enableBiometrics = false.obs;
   final RxBool enable2FA = false.obs;
 
-  final RxString selectedGender = ''.obs;
+  final RxString selectedGender = 'Male'.obs;
   final RxString selectedGym = ''.obs;
   final RxString selectedFitnessLevel = ''.obs;
 
@@ -103,17 +103,25 @@ class RegisterController extends GetxController {
     try {
       isLoading.value = true;
       await _repo.register(
-        phone: phoneController.text.trim().isNotEmpty ? phoneController.text.trim() : null,
-        bio: bioController.text.trim().isNotEmpty ? bioController.text.trim() : null,
+        phone: phoneController.text.trim().isNotEmpty
+            ? phoneController.text.trim()
+            : null,
+        bio: bioController.text.trim().isNotEmpty
+            ? bioController.text.trim()
+            : null,
         email: emailController.text.trim(),
         password: passwordController.text,
         name: nameController.text.trim(),
         gender: selectedGender.value.isNotEmpty ? selectedGender.value : null,
         gymName: selectedGym.value.isNotEmpty ? selectedGym.value : null,
-        fitnessLevel: selectedFitnessLevel.value.isNotEmpty ? selectedFitnessLevel.value : null,
+        fitnessLevel: selectedFitnessLevel.value.isNotEmpty
+            ? selectedFitnessLevel.value
+            : null,
         workoutTypes: selectedLabels.isNotEmpty ? selectedLabels : null,
         preferredDays: preferredDays.isNotEmpty ? preferredDays.toList() : null,
-        preferredTimes: preferredTimes.isNotEmpty ? preferredTimes.toList() : null,
+        preferredTimes: preferredTimes.isNotEmpty
+            ? preferredTimes.toList()
+            : null,
         profileImage: selectedImage.value,
       );
       Get.offAllNamed(AppRoutes.home);
@@ -133,10 +141,13 @@ class RegisterController extends GetxController {
       selectedImage.value = image;
       Get.back();
     } else {
-      Get.snackbar('No Image', 'No image was selected. Please try again.',
-          snackPosition: SnackPosition.TOP,
-          margin: const EdgeInsets.all(16),
-          borderRadius: 12);
+      Get.snackbar(
+        'No Image',
+        'No image was selected. Please try again.',
+        snackPosition: SnackPosition.TOP,
+        margin: const EdgeInsets.all(16),
+        borderRadius: 12,
+      );
     }
     isImageUploading.value = false;
   }
@@ -147,14 +158,17 @@ class RegisterController extends GetxController {
   }
 
   void _showError(String message) {
-    Get.snackbar('Oops!', message,
-        snackPosition: SnackPosition.TOP,
-        backgroundColor: Colors.red.shade50,
-        colorText: Colors.red.shade800,
-        icon: Icon(Icons.error_outline_rounded, color: Colors.red.shade600),
-        margin: const EdgeInsets.all(16),
-        borderRadius: 12,
-        duration: const Duration(seconds: 4));
+    Get.snackbar(
+      'Oops!',
+      message,
+      snackPosition: SnackPosition.TOP,
+      backgroundColor: Colors.red.shade50,
+      colorText: Colors.red.shade800,
+      icon: Icon(Icons.error_outline_rounded, color: Colors.red.shade600),
+      margin: const EdgeInsets.all(16),
+      borderRadius: 12,
+      duration: const Duration(seconds: 4),
+    );
   }
 
   @override
