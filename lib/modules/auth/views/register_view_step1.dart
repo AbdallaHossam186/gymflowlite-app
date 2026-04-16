@@ -168,6 +168,21 @@ class RegisterViewStep1 extends GetView<RegisterController> {
                   ),
 
                   const SizedBox(height: 28),
+                  LabeledTextField(
+                    label: 'Phone Number',
+                    hint: 'e.g. +1 234 567 8900',
+                    controller: controller.phoneController,
+                    keyboardType: TextInputType.phone,
+                  ),
+                  const SizedBox(height: 20),
+
+                  LabeledTextField(
+                    label: 'Bio',
+                    hint: 'Tell us a bit about yourself...',
+                    controller: controller.bioController,
+                    keyboardType: TextInputType.text,
+                  ),
+                  const SizedBox(height: 24),
 
                   // ── Gender ───────────────────────────────────────────────
                   GenderSelection(),
@@ -280,6 +295,89 @@ class RegisterViewStep1 extends GetView<RegisterController> {
                     disciplines: controller.disciplines,
                     onToggle: controller.toggle,
                   ),
+
+                  const SizedBox(height: 32),
+
+                  // ── Preferred Workout Days ───────────────────────────────
+                  Text(
+                    'Preferred Workout Days',
+                    style: theme.textTheme.bodyMedium!.copyWith(
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black87,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  Obx(() {
+                    const days = [
+                      'Mon',
+                      'Tue',
+                      'Wed',
+                      'Thu',
+                      'Fri',
+                      'Sat',
+                      'Sun',
+                    ];
+                    return Wrap(
+                      spacing: 8,
+                      runSpacing: 8,
+                      children: days.map((day) {
+                        final selected = controller.preferredDays.contains(day);
+                        return ChoiceChip(
+                          label: Text(day),
+                          selected: selected,
+                          onSelected: (_) => controller.toggleDay(day),
+                          selectedColor: theme.colorScheme.primary,
+                          labelStyle: TextStyle(
+                            color: selected
+                                ? theme.colorScheme.onPrimary
+                                : Colors.black87,
+                            fontWeight: FontWeight.w600,
+                          ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        );
+                      }).toList(),
+                    );
+                  }),
+
+                  const SizedBox(height: 24),
+
+                  // ── Preferred Workout Times ──────────────────────────────
+                  Text(
+                    'Preferred Workout Times',
+                    style: theme.textTheme.bodyMedium!.copyWith(
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black87,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  Obx(() {
+                    const times = ['Morning', 'Afternoon', 'Evening', 'Night'];
+                    return Wrap(
+                      spacing: 8,
+                      runSpacing: 8,
+                      children: times.map((time) {
+                        final selected =
+                            controller.preferredTimes.contains(time);
+                        return ChoiceChip(
+                          label: Text(time),
+                          selected: selected,
+                          onSelected: (_) => controller.toggleTime(time),
+                          selectedColor: theme.colorScheme.primary,
+                          labelStyle: TextStyle(
+                            color: selected
+                                ? theme.colorScheme.onPrimary
+                                : Colors.black87,
+                            fontWeight: FontWeight.w600,
+                          ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        );
+                      }).toList(),
+                    );
+                  }),
 
                   const SizedBox(height: 32),
 

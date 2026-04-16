@@ -177,4 +177,9 @@ class UserModel {
       isPremiumUser: isPremiumUser ?? this.isPremiumUser,
     );
   }
+
+  /// A profile is considered "complete" when the user has saved their
+  /// core fitness preferences (workout types is the minimum required).
+  bool get isProfileComplete =>
+      workoutTypes != null && workoutTypes!.isNotEmpty;
 }

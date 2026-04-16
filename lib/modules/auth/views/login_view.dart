@@ -70,8 +70,8 @@ class LoginView extends GetView<LoginController> {
                     child: OutlinedButton(
                       onPressed: controller.isGoogleLoading.value
                           ? null
-                          : () => Get.toNamed(AppRoutes.compeleteYourProfile),
-                      // : () => controller.loginWithGoogle(),
+                          // : () => Get.toNamed(AppRoutes.compeleteYourProfile),
+                          : () => controller.loginWithGoogle(),
                       style: OutlinedButton.styleFrom(
                         backgroundColor: Colors.white,
                         side: BorderSide(

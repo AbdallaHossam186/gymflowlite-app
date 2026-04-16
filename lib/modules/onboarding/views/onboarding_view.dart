@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:gymflow_lite/modules/onboarding/controllers/onboarding_controller.dart';
-import 'package:gymflow_lite/routes/app_routes.dart';
 import 'package:gymflow_lite/widgets/rounded_button.dart';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -210,7 +209,7 @@ class OnboardingView extends GetView<OnboardingController> {
           Obx(
             () => controller.pageIndex.value != 2
                 ? TextButton(
-                    onPressed: () => controller.pageIndex.value = 2,
+                    onPressed: () => controller.finishOnboarding(),
                     child: Text(
                       'SKIP',
                       style: TextStyle(
@@ -626,8 +625,7 @@ class OnboardingView extends GetView<OnboardingController> {
                               if (controller.pageIndex.value < 2) {
                                 controller.pageIndex.value++;
                               } else {
-                                Get.offNamed(AppRoutes.login);
-                                // Handle last page — navigate to home/login
+                                controller.finishOnboarding();
                               }
                             },
                             child: Row(

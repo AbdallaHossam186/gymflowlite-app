@@ -25,10 +25,7 @@ class LoginController extends GetxController {
 
     try {
       isLoading.value = true;
-      await _repo.login(
-        emailController.text.trim(),
-        passwordController.text,
-      );
+      await _repo.login(emailController.text.trim(), passwordController.text);
       Get.offAllNamed(AppRoutes.home);
     } catch (e) {
       _showError(_cleanErrorMessage(e));
@@ -42,8 +39,15 @@ class LoginController extends GetxController {
   Future<void> loginWithGoogle() async {
     try {
       isGoogleLoading.value = true;
-      await _repo.loginWithGoogle();
-      Get.offAllNamed(AppRoutes.home);
+      final result = await _repo.loginWithGoogle();
+
+      if (result.isNewUser || !result.user.isProfileComplete) {
+        // New user or existing user with incomplete profile → collect details.
+        Get.offAllNamed(AppRoutes.compeleteYourProfile);
+      } else {
+        // Returning user with a complete profile → go straight to Home.
+        Get.offAllNamed(AppRoutes.home);
+      }
     } catch (e) {
       _showError(_cleanErrorMessage(e));
     } finally {
@@ -76,10 +80,7 @@ class LoginController extends GetxController {
 
   String _cleanErrorMessage(Object e) {
     final msg = e.toString();
-    // Strip "Exception: " prefix for cleaner display
-    if (msg.startsWith('Exception: ')) {
-      return msg.substring(11);
-    }
+    if (msg.startsWith('Exception: ')) return msg.substring(11);
     return msg;
   }
 

@@ -1,7 +1,9 @@
 import 'package:get/get.dart';
+import 'package:gymflow_lite/modules/auth/bindings/auth_binding.dart';
 import 'package:gymflow_lite/modules/auth/bindings/login_binding.dart';
 import 'package:gymflow_lite/modules/auth/bindings/register_binding.dart';
-import 'package:gymflow_lite/modules/auth/views/complete_your_profile_view.dart';
+import 'package:gymflow_lite/modules/auth/views/auth_wrapper_view.dart';
+import 'package:gymflow_lite/modules/auth/views/complete_your_profile_main_view.dart';
 import 'package:gymflow_lite/modules/auth/views/forget_password_view.dart';
 import 'package:gymflow_lite/modules/auth/views/login_view.dart';
 import 'package:gymflow_lite/modules/auth/views/register_view.dart';
@@ -17,6 +19,11 @@ import 'app_routes.dart';
 
 class AppPages {
   static final pages = [
+    GetPage(
+      name: AppRoutes.authWrapper,
+      page: () => AuthWrapper(),
+      binding: AuthBinding(),
+    ),
     GetPage(
       name: AppRoutes.splash,
       page: () => SplashPage(),
@@ -49,7 +56,7 @@ class AppPages {
     ),
     GetPage(
       name: AppRoutes.compeleteYourProfile,
-      page: () => const CompleteYourProfileView(),
+      page: () => const CompleteYourProfileMainView(),
       binding: CompleteProfileBinding(),
     ),
   ];

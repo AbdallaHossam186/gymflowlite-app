@@ -13,6 +13,8 @@ class CompleteProfileController extends GetxController {
 
   final RxBool isLoading = false.obs;
 
+  final RxInt currentStep = 0.obs;
+
   // Form State
   final phoneController = TextEditingController();
   final bioController = TextEditingController();

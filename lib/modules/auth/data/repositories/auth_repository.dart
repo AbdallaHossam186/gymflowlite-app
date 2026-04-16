@@ -36,9 +36,14 @@ class AuthRepository {
     required String email,
     required String password,
     required String name,
+    String? bio,
+    String? phone,
     String? gender,
     String? gymName,
+    String? fitnessLevel,
     List<String>? workoutTypes,
+    List<String>? preferredDays,
+    List<String>? preferredTimes,
     File? profileImage,
   }) async {
     // 1. Create Firebase Auth user
@@ -71,10 +76,15 @@ class AuthRepository {
       id: uid,
       name: name,
       email: email,
+      phone: phone,
+      bio: bio,
       photoUrl: photoUrl,
       gender: gender,
       gymName: gymName,
+      fitnessLevel: fitnessLevel,
       workoutTypes: workoutTypes,
+      preferredDays: preferredDays,
+      preferredTimes: preferredTimes,
       createdAt: DateTime.now(),
       lastActive: DateTime.now(),
     );
@@ -88,7 +98,9 @@ class AuthRepository {
 
   // ── Login with Google ───────────────────────────────────────────────────
 
-  Future<UserModel?> loginWithGoogle() async {
+  /// Returns the user profile. [isNewUser] is true when the profile was just
+  /// created (first-time Google sign-in) and needs to be completed.
+  Future<({UserModel user, bool isNewUser})> loginWithGoogle() async {
     final credential = await _authService.loginWithGoogle();
     final firebaseUser = credential.user!;
     final uid = firebaseUser.uid;
@@ -96,10 +108,11 @@ class AuthRepository {
     // Check if Firestore profile already exists
     final existingProfile = await _firestoreService.getUserProfile(uid);
     if (existingProfile != null) {
-      return existingProfile;
+      return (user: existingProfile, isNewUser: false);
     }
 
-    // First-time Google sign-in: create profile from Google account data
+    // First-time Google sign-in: create a minimal profile from Google data.
+    // The user will be sent to "Complete Profile" to fill in fitness details.
     final user = UserModel(
       id: uid,
       name: firebaseUser.displayName ?? 'User',
@@ -110,7 +123,7 @@ class AuthRepository {
     );
 
     await _firestoreService.createUserProfile(user);
-    return user;
+    return (user: user, isNewUser: true);
   }
 
   // ── Password Reset ──────────────────────────────────────────────────────

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:gymflow_lite/modules/splash_screen/controllers/splash_controller.dart';
 
-class SplashPage extends GetView<SplashController> {
+class SplashPage extends StatelessWidget {
   const SplashPage({super.key});
 
   @override

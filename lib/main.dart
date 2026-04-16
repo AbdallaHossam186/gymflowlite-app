@@ -1,4 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+﻿import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -6,14 +6,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:gymflow_lite/core/theme/app_theme.dart';
 import 'package:gymflow_lite/firebase_options.dart';
-import 'package:gymflow_lite/modules/auth/bindings/auth_binding.dart';
 
 import 'package:gymflow_lite/routes/app_pages.dart';
 import 'package:gymflow_lite/routes/app_routes.dart';
 
-/// Set to `true` to use Firebase emulators for local development.
-/// Set to `false` to connect to production Firebase.
-const bool useFirebaseEmulators = true;
+/// Set to 	rue to use Firebase emulators for local development.
+/// Set to alse to connect to production Firebase.
+const bool useFirebaseEmulators = false;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -35,14 +34,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      initialBinding: AuthBinding(),
+      // The splash screen is always the entry point. It handles all routing.
       initialRoute: AppRoutes.splash,
       getPages: AppPages.pages,
       debugShowCheckedModeBanner: false,
       title: 'GymFlow Lite',
       theme: AppTheme.light,
       darkTheme: AppTheme.dark,
-      themeMode: ThemeMode.system,
+      themeMode: ThemeMode.light,
     );
   }
 }
